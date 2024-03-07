@@ -54,7 +54,7 @@ func main() {
 	exe_path, _ := os.Executable()
 	exe_dir := filepath.Dir(exe_path)
 
-	core.Banner()
+	// core.Banner()
 	showAd()
 
 	_log.SetOutput(log.NullLogger().Writer())
