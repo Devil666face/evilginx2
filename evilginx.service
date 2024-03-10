@@ -1,0 +1,15 @@
+[Unit]
+Description=Start evliginx in tmux session
+After=network.target
+
+[Service]
+Type=forking
+User=root
+Group=root
+WorkingDirectory=/root
+ExecStart=/usr/bin/tmux new-session -d -s "evil" /root/evilginx2
+ExecStop=/usr/bin/tmux kill-session -t evil
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

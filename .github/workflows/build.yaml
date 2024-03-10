@@ -40,7 +40,7 @@ jobs:
           APP: ${{github.event.repository.name}}
 
       - name: Make release tar
-        run: tar -cvzf ${{github.event.repository.name}}.tgz ${{github.event.repository.name}} phishlets redirectors .evilginx
+        run: tar -cvzf ${{github.event.repository.name}}.tgz ${{github.event.repository.name}} phishlets redirectors .evilginx evilginx.service
 
       - name: Set tag name
         run: echo "GITHUB_RELEASE_TAG=$(date +v%m.%d.%H)" >> $GITHUB_ENV
