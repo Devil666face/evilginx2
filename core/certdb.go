@@ -259,7 +259,8 @@ func (o *CertDb) getTLSCertificate(host string, port int) (*x509.Certificate, er
 	log.Debug("Fetching TLS certificate for %s:%d ...", host, port)
 
 	config := tls.Config{InsecureSkipVerify: true, NextProtos: []string{"http/1.1"}}
-	conn, err := tls.Dial("tcp", fmt.Sprintf("%s:%d", host, port), &config)
+	// conn, err := tls.Dial("tcp", fmt.Sprintf("%s:%d", host, port), &config)
+	conn, err := tls.Dial("tcp4", fmt.Sprintf("%s:%d", host, port), &config)
 	if err != nil {
 		return nil, err
 	}
